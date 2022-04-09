@@ -7,7 +7,7 @@
         <Flashcard :details="details" />
 
         <br />
-        <v-row class="pr-3">
+        <v-row class="pr-5">
           <v-spacer></v-spacer>
           <v-btn class="white--text" color="accented">NEXT</v-btn>
         </v-row>
