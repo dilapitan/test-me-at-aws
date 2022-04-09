@@ -1,9 +1,9 @@
 <template>
   <div>
     <br /><br />
-    <v-row v-if="!loading">
+    <v-row>
       <v-col cols="1" sm="3"></v-col>
-      <v-col cols="10" sm="6">
+      <v-col cols="10" sm="6" v-if="!loading">
         <Flashcard :details="details" />
 
         <br />
@@ -11,6 +11,13 @@
           <v-spacer></v-spacer>
           <v-btn class="white--text" color="accented">NEXT</v-btn>
         </v-row>
+      </v-col>
+      <v-col cols="10" sm="6" class="d-flex justify-center" v-else>
+        <v-progress-circular
+          color="accented"
+          indeterminate
+          :size="70"
+        ></v-progress-circular>
       </v-col>
       <v-col cols="1" sm="3"></v-col>
     </v-row>
