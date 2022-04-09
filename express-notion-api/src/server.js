@@ -1,15 +1,17 @@
 require('dotenv').config()
 
 const express = require('express')
+const cors = require('cors')
 
-const { getFlashCards } = require('./notion')
+const { getFlashcards } = require('./notion')
 
 const app = express()
+app.use(cors())
 
 app.get('/', async (req, res) => {
-  const flashCards = await getFlashCards()
+  const flashcards = await getFlashcards()
   res.send({
-    data: flashCards,
+    content: flashcards,
   })
 })
 

@@ -19,12 +19,17 @@
 
 <script>
 import Flashcard from '@/components/Flashcard'
+import FlashcardService from '@/services/FlashcardService'
 
 export default {
   name: 'Home',
 
   components: {
     Flashcard,
+  },
+
+  created() {
+    this.getFlashcards()
   },
 
   data: () => ({
@@ -40,5 +45,16 @@ export default {
       },
     },
   }),
+
+  methods: {
+    async getFlashcards() {
+      try {
+        const response = await FlashcardService.getFlashcards()
+        this.flashcards = response.data.content
+      } catch (error) {
+        throw new Error(error)
+      }
+    },
+  },
 }
 </script>

@@ -35,7 +35,7 @@ function fromNotionObject(notionPage) {
   }
 }
 
-async function getFlashCards() {
+async function getFlashcards() {
   try {
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID,
@@ -46,14 +46,14 @@ async function getFlashCards() {
         },
       ],
     })
-    const flashCards = response.results.map(fromNotionObject)
+    const flashcards = response.results.map(fromNotionObject)
 
-    return flashCards
+    return flashcards
   } catch (error) {
     throw new Error(error)
   }
 }
 
 module.exports = {
-  getFlashCards,
+  getFlashcards,
 }
