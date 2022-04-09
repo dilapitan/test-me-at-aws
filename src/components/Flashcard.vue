@@ -2,6 +2,17 @@
   <v-card class="display-block" height="400">
     <v-container>
       <div>
+        <v-overlay
+          :absolute="absolute"
+          :opacity="opacity"
+          :value="overlay"
+          color="primary"
+        >
+          <v-btn color="accented" @click="overlay = false">
+            Show Answers
+          </v-btn>
+        </v-overlay>
+
         <v-list class="display-block" height="330">
           <v-list-item v-for="(answer, i) in answers" :key="i">
             <v-list-item-content>
@@ -33,7 +44,7 @@ export default {
 
   data: () => ({
     answers: null,
-    opacity: 0.5,
+    opacity: 1,
     overlay: true,
     absolute: true,
   }),
