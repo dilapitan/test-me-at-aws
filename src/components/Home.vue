@@ -9,7 +9,9 @@
         <br />
         <v-row class="pr-5">
           <v-spacer></v-spacer>
-          <v-btn class="white--text" color="accented">NEXT</v-btn>
+          <v-btn @click="randomize()" class="white--text" color="accented">
+            NEXT
+          </v-btn>
         </v-row>
       </v-col>
       <v-col cols="10" sm="6" class="d-flex justify-center" v-else>
@@ -58,15 +60,15 @@ export default {
     randomize() {
       const randomFlashcard =
         this.flashcards[Math.floor(Math.random() * this.flashcards.length)]
-      console.log('randomFlashcard:', randomFlashcard)
-      return randomFlashcard
+
+      this.details = randomFlashcard
     },
 
     async setup() {
       this.loading = true
       await this.getFlashcards()
       if (this.flashcards?.length > 0) {
-        this.details = { ...this.randomize() }
+        this.randomize()
         this.loading = false
       }
     },

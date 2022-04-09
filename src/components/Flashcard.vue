@@ -39,7 +39,15 @@ export default {
   }),
 
   created() {
+    // Run once
     this.parseAnswers(this.details.answers)
+  },
+
+  watch: {
+    // Listen to prop change
+    details() {
+      this.parseAnswers(this.details.answers)
+    },
   },
 
   methods: {
