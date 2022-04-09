@@ -2,7 +2,7 @@
   <v-card class="display-block" height="520">
     <v-container>
       <div>
-        <v-card-title class="text-body-1 font-weight-bold">
+        <v-card-title class="font-weight-bold">
           {{ details.question }}
         </v-card-title>
       </div>
