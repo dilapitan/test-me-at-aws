@@ -17,7 +17,7 @@
         <v-divider></v-divider>
 
         <v-chip class="mt-2 font-weight-medium">
-          Category: {{ details.category.name }}
+          Under category: {{ details.category.name }}
         </v-chip>
       </div>
     </v-container>
