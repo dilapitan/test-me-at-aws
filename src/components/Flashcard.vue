@@ -1,14 +1,8 @@
 <template>
-  <v-card class="display-block" height="520">
+  <v-card class="display-block" height="400">
     <v-container>
       <div>
-        <v-card-title class="font-weight-bold">
-          {{ details.question }}
-        </v-card-title>
-      </div>
-
-      <div>
-        <v-list class="display-block" height="365">
+        <v-list class="display-block" height="330">
           <v-list-item v-for="(answer, i) in answers" :key="i">
             <v-list-item-content>
               {{ answer }}
@@ -29,6 +23,7 @@
 <script>
 export default {
   name: 'Flashcard',
+
   props: {
     details: {
       type: Object,
@@ -38,6 +33,9 @@ export default {
 
   data: () => ({
     answers: null,
+    opacity: 0.5,
+    overlay: true,
+    absolute: true,
   }),
 
   created() {

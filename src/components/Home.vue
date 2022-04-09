@@ -4,6 +4,12 @@
     <v-row>
       <v-col cols="1" sm="3"></v-col>
       <v-col cols="10" sm="6" v-if="!loading">
+        <div style="height: 100px" class="display-block">
+          <h3 class="font-weight-bold">
+            {{ details.question }}
+          </h3>
+        </div>
+
         <Flashcard :details="details" />
 
         <br />
