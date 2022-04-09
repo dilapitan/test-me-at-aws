@@ -57,7 +57,10 @@ export default {
   watch: {
     // Listen to prop change
     details() {
-      this.parseAnswers(this.details.answers)
+      this.overlay = true
+      setTimeout(() => {
+        this.parseAnswers(this.details.answers)
+      }, 300)
     },
   },
 
