@@ -1,7 +1,7 @@
 <template>
   <div>
     <br /><br />
-    <v-row>
+    <v-row v-if="!loading">
       <v-col cols="1" sm="3"></v-col>
       <v-col cols="10" sm="6">
         <Flashcard :details="details" />
@@ -29,21 +29,13 @@ export default {
   },
 
   created() {
-    this.getFlashcards()
+    this.setup()
   },
 
   data: () => ({
-    flashcards: null,
-    details: {
-      question: 'What are availability zones (AZ)?',
-      answers:
-        '- the ones that are going into the region\n- one or more discrete data centers with redundant power, networking, and connectivity\n- separate from each other; isolated from disaster\n- connected to each other with super awesome networking',
-      category: {
-        id: '8a9b319d-1ea1-4460-aaa5-d5db8618e247',
-        name: 'AWS Cloud Overview',
-        color: 'brown',
-      },
-    },
+    flashcards: [],
+    details: {},
+    loading: null,
   }),
 
   methods: {
@@ -53,6 +45,22 @@ export default {
         this.flashcards = response.data.content
       } catch (error) {
         throw new Error(error)
+      }
+    },
+
+    randomize() {
+      const randomFlashcard =
+        this.flashcards[Math.floor(Math.random() * this.flashcards.length)]
+      console.log('randomFlashcard:', randomFlashcard)
+      return randomFlashcard
+    },
+
+    async setup() {
+      this.loading = true
+      await this.getFlashcards()
+      if (this.flashcards?.length > 0) {
+        this.details = { ...this.randomize() }
+        this.loading = false
       }
     },
   },
