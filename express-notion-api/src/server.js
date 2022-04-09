@@ -9,10 +9,14 @@ const app = express()
 app.use(cors())
 
 app.get('/', async (req, res) => {
-  const flashcards = await getFlashcards()
-  res.send({
-    content: flashcards,
-  })
+  try {
+    const flashcards = await getFlashcards()
+    res.send({
+      content: flashcards,
+    })
+  } catch (error) {
+    res.send({ error: error })
+  }
 })
 
 app.listen(process.env.PORT, () => `Running on port ${process.env.PORT}`)
