@@ -5,19 +5,21 @@
         {{ details.question }}
       </v-card-title>
 
-      <v-list>
-        <v-list-item v-for="(answer, i) in answers" :key="i">
-          <v-list-item-content>
-            <v-list-item-title v-text="answer"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+      <div>
+        <v-list>
+          <v-list-item v-for="(answer, i) in answers" :key="i">
+            <v-list-item-content>
+              <v-list-item-title v-text="answer"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
 
-      <v-divider></v-divider>
+        <v-divider></v-divider>
 
-      <v-chip class="mt-2 font-weight-medium">
-        Category: {{ details.category.name }}
-      </v-chip>
+        <v-chip class="mt-2 font-weight-medium">
+          Category: {{ details.category.name }}
+        </v-chip>
+      </div>
     </v-container>
   </v-card>
 </template>
