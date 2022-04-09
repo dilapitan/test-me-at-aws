@@ -1,5 +1,5 @@
 <template>
-  <v-card width="700" max-width="900">
+  <v-card>
     <v-container>
       <v-card-title>
         {{ details.question }}
@@ -9,7 +9,7 @@
         <v-list>
           <v-list-item v-for="(answer, i) in answers" :key="i">
             <v-list-item-content>
-              <v-list-item-title v-text="answer"></v-list-item-title>
+              {{ answer }}
             </v-list-item-content>
           </v-list-item>
         </v-list>
