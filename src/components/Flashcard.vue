@@ -1,12 +1,14 @@
 <template>
-  <v-card>
+  <v-card class="display-block" height="520">
     <v-container>
-      <v-card-title>
-        {{ details.question }}
-      </v-card-title>
+      <div>
+        <v-card-title class="text-body-1 font-weight-bold">
+          {{ details.question }}
+        </v-card-title>
+      </div>
 
       <div>
-        <v-list>
+        <v-list class="display-block" height="365">
           <v-list-item v-for="(answer, i) in answers" :key="i">
             <v-list-item-content>
               {{ answer }}
@@ -16,7 +18,7 @@
 
         <v-divider></v-divider>
 
-        <v-chip class="mt-2 font-weight-medium">
+        <v-chip class="my-1 font-weight-medium">
           Under category: {{ details.category.name }}
         </v-chip>
       </div>
