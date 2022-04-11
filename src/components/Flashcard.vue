@@ -69,8 +69,10 @@ export default {
 
   methods: {
     parseAnswers(answers) {
-      const parsed = answers?.split('\n')
-      this.answers = parsed
+      setTimeout(() => {
+        const parsed = answers?.split('\n')
+        this.answers = parsed
+      }, 500)
     },
   },
 }
