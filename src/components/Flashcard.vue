@@ -50,17 +50,20 @@ export default {
   }),
 
   created() {
-    // Run once
     this.parseAnswers(this.details.answers)
   },
 
   watch: {
-    // Listen to prop change
     details() {
+      /**
+       * Listen to prop change and the NEXT button.
+       *
+       * If the same question is given, it will not change, so it will not be hidden.
+       */
       this.overlay = true
       setTimeout(() => {
         this.parseAnswers(this.details.answers)
-      }, 300)
+      }, 500)
     },
   },
 
