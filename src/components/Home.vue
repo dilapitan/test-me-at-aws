@@ -64,6 +64,7 @@ export default {
 
   data: () => ({
     flashcards: [],
+    items: [],
     categories: [{ value: 'All Categories' }],
     select: { value: 'All Categories' },
     details: {},
@@ -72,21 +73,28 @@ export default {
 
   watch: {
     select() {
-      console.log('selected: ', this.select)
+      this.getFlashcardsByCategory(this.select)
     },
   },
 
   methods: {
     async getFlashcards() {
       try {
+        // Getting all the Flashcards
         const response = await FlashcardService.getFlashcards()
         this.flashcards = response.data.content
+        this.items = this.flashcards
 
+        /**
+         * This is for setting up the list of categories after getting
+         * the Flashcards.
+         */
         this.flashcards.map((flashcard) => {
           const found = this.categories.find((category) => {
             category.value === flashcard.category.name
           })
 
+          // Ensuring no duplicates in setting up the list of categories
           if (found === undefined)
             this.categories.push({ value: flashcard.category.name })
         })
@@ -95,9 +103,24 @@ export default {
       }
     },
 
+    getFlashcardsByCategory(category) {
+      this.loading = true
+      if (category !== 'All Categories') {
+        const categorizedFlashcards = this.flashcards.filter(
+          (flashcard) => flashcard.category.name === category
+        )
+
+        this.items = categorizedFlashcards
+      } else this.items = this.flashcards
+
+      // After getting all categorized Flashcards, a new question will be picked
+      this.randomize()
+      this.loading = false
+    },
+
     randomize() {
       const randomFlashcard =
-        this.flashcards[Math.floor(Math.random() * this.flashcards.length)]
+        this.items[Math.floor(Math.random() * this.items.length)]
 
       this.details = randomFlashcard
     },
