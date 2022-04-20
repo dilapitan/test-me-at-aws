@@ -1,49 +1,55 @@
 <template>
   <div>
     <br />
-    <v-row>
-      <v-col cols="1" sm="3" md="3"></v-col>
-      <v-col cols="9" sm="4" md="3">
-        <v-select
-          :items="categories"
-          item-text="value"
-          item-value="value"
-          v-model="select"
-          label="Sort By"
-          filled
-          rounded
-          dense
-        ></v-select>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="1" sm="3"></v-col>
-      <v-col cols="10" sm="6" v-if="!loading">
-        <div style="height: 100px" class="display-block">
-          <h3 class="font-weight-bold">
-            {{ details.question }}
-          </h3>
-        </div>
+    <div v-if="!loading">
+      <v-row>
+        <v-col cols="1" sm="3" md="3"></v-col>
+        <v-col cols="9" sm="4" md="3">
+          <v-select
+            :items="categories"
+            item-text="value"
+            item-value="value"
+            v-model="select"
+            label="Sort By"
+            filled
+            rounded
+            dense
+          ></v-select>
+        </v-col>
+      </v-row>
 
-        <Flashcard :details="details" />
+      <v-row>
+        <v-col cols="1" sm="3"></v-col>
+        <v-col cols="10" sm="6">
+          <div style="height: 100px" class="display-block">
+            <h3 class="font-weight-bold">
+              {{ details.question }}
+            </h3>
+          </div>
 
-        <br />
-        <v-row class="pr-5">
-          <v-spacer></v-spacer>
-          <v-btn @click="randomize()" class="white--text" color="accented">
-            NEXT
-          </v-btn>
-        </v-row>
-      </v-col>
-      <v-col cols="10" sm="6" class="d-flex justify-center" v-else>
+          <Flashcard :details="details" />
+
+          <br />
+          <v-row class="pr-5">
+            <v-spacer></v-spacer>
+            <v-btn @click="randomize()" class="white--text" color="accented">
+              NEXT
+            </v-btn>
+          </v-row>
+        </v-col>
+        <v-col cols="10" sm="6" class="d-flex justify-center"> </v-col>
+        <v-col cols="1" sm="3"></v-col>
+      </v-row>
+    </div>
+    <div v-else>
+      <v-row justify="center">
         <v-progress-circular
           color="accented"
           indeterminate
           :size="70"
         ></v-progress-circular>
-      </v-col>
-      <v-col cols="1" sm="3"></v-col>
-    </v-row>
+      </v-row>
+    </div>
   </div>
 </template>
 
