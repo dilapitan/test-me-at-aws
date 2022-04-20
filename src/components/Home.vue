@@ -110,7 +110,6 @@ export default {
     },
 
     getFlashcardsByCategory(category) {
-      this.loading = true
       if (category !== 'All Categories') {
         const categorizedFlashcards = this.flashcards.filter(
           (flashcard) => flashcard.category.name === category
@@ -121,7 +120,6 @@ export default {
 
       // After getting all categorized Flashcards, a new question will be picked
       this.randomize()
-      this.loading = false
     },
 
     randomize() {
