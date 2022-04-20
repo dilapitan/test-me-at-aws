@@ -21,7 +21,7 @@
       <v-row>
         <v-col cols="1" sm="3"></v-col>
         <v-col cols="10" sm="6">
-          <div style="height: 100px" class="display-block">
+          <div style="height: 80px" class="display-block">
             <h3 class="font-weight-bold">
               {{ details.question }}
             </h3>
