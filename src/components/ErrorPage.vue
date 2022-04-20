@@ -1,11 +1,10 @@
 <template>
   <v-container>
-    <h3>Woops! Something went wrong.</h3>
+    <h2>Woops! Something went wrong.</h2>
     <p>
-      Please contact
+      Please email
 
-      <span class="accented--text">dilapitan.dev@gmail.com</span>
-      .
+      <span class="accented--text">dilapitan.dev@gmail.com</span> for a fix.
     </p>
   </v-container>
 </template>
