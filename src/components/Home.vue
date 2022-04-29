@@ -3,44 +3,57 @@
     <br />
     <div v-if="!error">
       <div v-if="!loading">
-        <v-row>
-          <v-col cols="1" sm="3" md="3"></v-col>
-          <v-col cols="9" sm="4" md="3">
-            <v-select
-              :items="categories"
-              item-text="value"
-              item-value="value"
-              v-model="select"
-              label="Sort By"
-              filled
-              rounded
-              dense
-            ></v-select>
-          </v-col>
-        </v-row>
+        <div v-if="flashcards.length">
+          <v-row>
+            <v-col cols="1" sm="3" md="3"></v-col>
+            <v-col cols="9" sm="4" md="3">
+              <v-select
+                :items="categories"
+                item-text="value"
+                item-value="value"
+                v-model="select"
+                label="Sort By"
+                filled
+                rounded
+                dense
+              ></v-select>
+            </v-col>
+          </v-row>
 
-        <v-row>
-          <v-col cols="1" sm="3"></v-col>
-          <v-col cols="10" sm="6">
-            <div style="height: 80px" class="display-block">
-              <h3 class="font-weight-bold">
-                {{ details.question }}
-              </h3>
-            </div>
+          <v-row>
+            <v-col cols="1" sm="3"></v-col>
+            <v-col cols="10" sm="6">
+              <div style="height: 80px" class="display-block">
+                <h3 class="font-weight-bold">
+                  {{ details.question }}
+                </h3>
+              </div>
 
-            <Flashcard :details="details" />
+              <Flashcard :details="details" />
 
-            <br />
-            <v-row class="pr-5">
-              <v-spacer></v-spacer>
-              <v-btn @click="randomize()" class="white--text" color="accented">
-                NEXT
-              </v-btn>
-            </v-row>
-          </v-col>
-          <v-col cols="10" sm="6" class="d-flex justify-center"> </v-col>
-          <v-col cols="1" sm="3"></v-col>
-        </v-row>
+              <br />
+              <v-row class="pr-5">
+                <v-spacer></v-spacer>
+                <v-btn
+                  @click="randomize()"
+                  class="white--text"
+                  color="accented"
+                >
+                  NEXT
+                </v-btn>
+              </v-row>
+            </v-col>
+            <v-col cols="10" sm="6" class="d-flex justify-center"> </v-col>
+            <v-col cols="1" sm="3"></v-col>
+          </v-row>
+        </div>
+
+        <div v-else>
+          <br />
+          <v-row justify="center" align="center">
+            <p class="text-h5">No data found.</p>
+          </v-row>
+        </div>
       </div>
       <div v-else>
         <v-row justify="center">
@@ -98,6 +111,11 @@ export default {
         // Getting all the Flashcards
         const response = await FlashcardService.getFlashcards()
         this.flashcards = response.data.content
+
+        if (!this.flashcards.length) {
+          this.loading = false
+          return
+        }
         this.items = this.flashcards
 
         /**
