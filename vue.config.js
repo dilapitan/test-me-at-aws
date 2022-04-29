@@ -1,4 +1,4 @@
 module.exports = {
   transpileDependencies: ['vuetify'],
-  publicPath: '/practice-saa/',
+  publicPath: '/test-me-at-aws/',
 }
