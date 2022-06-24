@@ -124,12 +124,12 @@ export default {
          */
         this.flashcards.map((flashcard) => {
           const found = this.categories.find((category) => {
-            category.value === flashcard.category.name
+            category.value === flashcard.category?.name
           })
 
           // Ensuring no duplicates in setting up the list of categories
           if (found === undefined)
-            this.categories.push({ value: flashcard.category.name })
+            this.categories.push({ value: flashcard.category?.name })
         })
       } catch (error) {
         this.error = true
